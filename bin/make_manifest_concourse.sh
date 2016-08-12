@@ -48,7 +48,7 @@ instance_groups:
       github_auth:
         authorize:
         - organization: $GITHUB_ORG
-          teams: [CI]
+          teams: [platform-engineering]
         client_id: $GITHUB_CLIENT_ID
         client_secret: $GITHUB_CLIENT_SECRET
 
