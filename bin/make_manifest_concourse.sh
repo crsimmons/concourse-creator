@@ -54,7 +54,7 @@ instance_groups:
 
       postgresql_database: &atc_db atc
 
-      publicly_viewable: true # anyone can view the main pipeline page
+      publicly_viewable: false # users must authenticate to view the main pipeline page
 
   - name: tsa
     release: concourse
