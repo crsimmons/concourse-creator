@@ -31,12 +31,6 @@ vm_types:
     ephemeral_disk: {size: 5_000, type: gp2}
     elbs: [concourse-elb]
     security_groups: [concourse-sg, boshdefault]
-- name: concourse_web
-  cloud_properties:
-    instance_type: m3.medium
-    ephemeral_disk: {size: 3_000, type: gp2}
-    elbs: [concourse-elb]
-    security_groups: [concourse-sg, boshdefault]
 - name: concourse_db
   cloud_properties:
     instance_type: m3.medium
@@ -47,21 +41,6 @@ vm_types:
     instance_type: m3.large
     ephemeral_disk: {size: 100_000, type: gp2}
     security_groups: [boshdefault]
-- name: default
-  cloud_properties:
-    instance_type: t2.micro
-    ephemeral_disk: {size: 3000, type: gp2}
-    security_groups: [boshdefault]
-- name: large
-  cloud_properties:
-    instance_type: m3.large
-    ephemeral_disk: {size: 5000, type: gp2}
-    security_groups: [boshdefault]
-- name: vault-default
-  cloud_properties:
-    instance_type: t2.micro
-    ephemeral_disk: {size: 3000, type: gp2}
-    security_groups: [vault-sg, boshdefault]
 
 disk_types:
 - name: default
