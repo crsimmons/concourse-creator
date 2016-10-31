@@ -20,16 +20,16 @@ Requirements
 Table of Contents
 -----
 
-1. [Initial setup](https://github.com/DigitalInnovation/bosh-concourse-setup/blob/master/docs/setup.md)
+1. [Initial setup](/docs/setup.md)
   * Setting up terraform
   * Using bosh-init to deploy the director
   * Configuring and deploying Concourse with bosh
-- [Ops tools](https://github.com/DigitalInnovation/bosh-concourse-setup/blob/master/docs/ops.md)
+- [Ops tools](/docs/ops.md)
   * Using bosh ssh to access bosh-managed vms
   * Using ssh to access EC2 instances
   * Using bosh logs to pull down job logs
   * Adding an IP to the whitelist for bosh access
-- [Updating Concourse](https://github.com/DigitalInnovation/bosh-concourse-setup/blob/master/docs/updating.md)
+- [Updating Concourse](/docs/updating.md)
   * Updating to a new version of Concourse
   * Updating to a new version of Garden
   * Updating the cloud config
