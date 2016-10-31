@@ -1,15 +1,15 @@
-### Terraform ###
-# Terraform - https://terraform.io/
-.terraform
-*.tfvars
-*.backup
-*.tfstate
+# Terraform
+/.terraform/terraform.tfstate
+/.terraform/terraform.tfstate.backup
+/plan.out
+/.plan.*
 *.DS_Store
-*.plan
 *.publishsettings
-### Keys ###
+
+# Keys
 *.pem
-### BOSH ###
+
+# BOSH
 *state.json
 bosh-director.yml
 concourse.yml
