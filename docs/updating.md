@@ -21,6 +21,13 @@ bosh deploy
 
 This will take a few minutes to complete.
 
+#Updating to a new version of Garden
+
+Same as above with Concourse but instead run
+```
+bosh upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
+```
+
 #Changing the cloud config
 
 The definitions such as vm types and disk sizes are found in `aws-cloud.yml`.  Upon making edits there, the changes can be deployed by:
