@@ -22,6 +22,7 @@ Table of Contents
 
 1. [Initial setup](/docs/setup.md)
   * Setting up terraform
+  * Generating the manifests
   * Using bosh-init to deploy the director
   * Configuring and deploying Concourse with bosh
 - [Ops tools](/docs/ops.md)
@@ -29,10 +30,11 @@ Table of Contents
   * Using ssh to access EC2 instances
   * Using bosh logs to pull down job logs
   * Adding an IP to the whitelist for bosh access
-- [Updating Concourse](/docs/updating.md)
+- [Updating](/docs/updating.md)
   * Updating to a new version of Concourse
   * Updating to a new version of Garden
   * Updating the cloud config
+  * Modifying the deployment
 
 
 Credits

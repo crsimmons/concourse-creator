@@ -36,3 +36,11 @@ bosh update cloud-config aws-cloud.yml
 bosh deployment concourse.yml
 bosh deploy
 ```
+
+#Changing the deployment
+
+Changes made to `concourse.yml` (such as adding worker vms or changing keys) can be deployed with a simple:
+```
+bosh deployment concourse.yml
+bosh deploy
+```
