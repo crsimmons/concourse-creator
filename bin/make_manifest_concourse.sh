@@ -75,7 +75,7 @@ instance_groups:
         password: $DB_PASSWORD
 
 - name: worker
-  instances: 1
+  instances: 2
   vm_type: concourse_worker
   stemcell: trusty
   azs: [z1]
