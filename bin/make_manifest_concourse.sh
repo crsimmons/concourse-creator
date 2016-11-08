@@ -6,6 +6,7 @@
 : "${GITHUB_ORG:?Need to set GITHUB_ORG non-empty}"
 : "${GITHUB_CLIENT_ID:?Need to set GITHUB_CLIENT_ID non-empty}"
 : "${GITHUB_CLIENT_SECRET:?Need to set GITHUB_CLIENT_SECRET non-empty}"
+: "${DISK_TYPE:?Need to set DISK_TYPE from Cloud Config}"
 
 DIRECTOR_UUID=`bosh status --uuid`
 
