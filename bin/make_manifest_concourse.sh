@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-#  Please set the following environment variables:
-#  $DB_PASSWORD
-#  $CONCOURSE_URL
-#  $GITHUB_ORG
-#  $GITHUB_CLIENT_ID
-#  $GITHUB_CLIENT_SECRET
+
+: "${DB_PASSWORD:?Need to set DB_PASSWORD non-empty}"
+: "${CONCOURSE_URL:?Need to set CONCOURSE_URL non-empty}"
+: "${GITHUB_ORG:?Need to set GITHUB_ORG non-empty}"
+: "${GITHUB_CLIENT_ID:?Need to set GITHUB_CLIENT_ID non-empty}"
+: "${GITHUB_CLIENT_SECRET:?Need to set GITHUB_CLIENT_SECRET non-empty}"
 
 DIRECTOR_UUID=`bosh status --uuid`
 
