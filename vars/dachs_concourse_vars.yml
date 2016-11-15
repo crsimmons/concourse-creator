@@ -2,4 +2,4 @@
 CONCOURSE_URL: https://ci.dachs.dog
 GITHUB_ORG: DigitalInnovation
 GITHUB_CLIENT_ID: 3a8340229a244418a163
-DISK_TYPE: large
+#DISK_TYPE: large

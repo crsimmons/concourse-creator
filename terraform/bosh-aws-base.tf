@@ -33,6 +33,8 @@ resource "aws_route" "internet_access" {
 resource "aws_subnet" "default" {
   vpc_id                  = "${aws_vpc.default.id}"
   cidr_block              = "10.0.0.0/24"
+  availability_zone = "eu-west-1a"
+  depends_on = ["aws_internet_gateway.default"]
   map_public_ip_on_launch = true
   tags {
   Name = "bosh-default"
@@ -44,6 +46,8 @@ resource "aws_subnet" "default" {
 resource "aws_subnet" "ops_services" {
   vpc_id                  = "${aws_vpc.default.id}"
   cidr_block              = "10.0.10.0/24"
+  availability_zone = "eu-west-1a"
+  depends_on = ["aws_internet_gateway.default"]
   map_public_ip_on_launch = true
   tags {
   Name = "ops_services"

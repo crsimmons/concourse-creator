@@ -1,7 +1,7 @@
-.PHONY: infra plan apply tf-apply clean mrproper help
+.PHONY: infra plan apply tf-apply clean mrproper destroy help
 .DEFAULT_GOAL := help
 
-AWS_PROFILE ?= Default
+AWS_PROFILE ?= default
 NOW         := $(shell date +"%Y%m%d-%H%M%S")
 RESOURCES   := terraform
 TF_VARS     ?= $(RESOURCES)/terraform.tfvars
@@ -20,6 +20,10 @@ apply: $(STATE) tf-apply clean ## Apply the current plan of operations to the in
 tf-apply:
 	terraform apply $(PLAN)
 
+destroy: ## DANGER!!!! THIS DESTROYS THE WHOLE BOSH STACK!!!! BE SURE WHAT YOU ARE DOING!!!!!
+	    bosh-init delete bosh-director.yml
+		terraform destroy -var-file=$(TF_VARS) $(RESOURCES)/
+
 show: ## Print what the current plan of operations would do, without replanning
 	terraform show $(PLAN)
 
@@ -32,7 +36,7 @@ mrproper: ## Remove all non-version-controlled files
 .terraform/terraform.tfstate:
 	terraform remote config \
 	  -backend=S3 \
-	  -backend-config="bucket=dachs-terraform" \
+	  -backend-config="bucket=boshconcourse-terraform" \
 	  -backend-config="key=terraform.tfstate" \
 	  -backend-config="region=eu-west-1" \
 	  -backend-config="encrypt=true" \

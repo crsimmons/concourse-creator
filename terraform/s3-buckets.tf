@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "www-dachs-dog" {
+/*resource "aws_s3_bucket" "www-dachs-dog" {
     bucket = "www.dachs.dog"
     acl = "public-read"
     region = "eu-west-1"
@@ -6,4 +6,4 @@ resource "aws_s3_bucket" "www-dachs-dog" {
         index_document = "index.html"
         error_document = "error.html"
     }
-}
+}*/

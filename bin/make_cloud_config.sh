@@ -5,7 +5,7 @@
 
 
 function getvars() {
-  cd terraform/
+  cd .terraform/
   DEFAULT_SUBNET=$(terraform output default_subnet_id)
   OPS_SUBNET=$(terraform output ops_services_subnet_id)
   cd ../
@@ -40,6 +40,11 @@ vm_types:
   cloud_properties:
     instance_type: m3.large
     ephemeral_disk: {size: 100_000, type: gp2}
+    security_groups: [boshdefault]
+- name: large
+  cloud_properties:
+    instance_type: m3.xlarge
+    ephemeral_disk: {size: 5000, type: gp2}
     security_groups: [boshdefault]
 
 disk_types:
