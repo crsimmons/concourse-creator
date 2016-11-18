@@ -41,7 +41,7 @@ vm_types:
     instance_type: m3.large
     ephemeral_disk: {size: 100_000, type: gp2}
     security_groups: [boshdefault]
-- name: large
+- name: concourse_compile
   cloud_properties:
     instance_type: m3.xlarge
     ephemeral_disk: {size: 5000, type: gp2}
@@ -82,7 +82,7 @@ compilation:
   workers: 5
   reuse_compilation_vms: true
   az: z1
-  vm_type: large
+  vm_type: concourse_compile
   network: default
 
 YAML
