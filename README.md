@@ -1,7 +1,11 @@
-BOSH Director & Concourse Bootstrap
+Concourse Pipelines for deploying a BOSH Director & Concourse on AWS
 ===================================
 
-This project achieves the following:
+Heavily based on the work in:
+- https://github.com/EngineerBetter/bosh-concourse-setup
+- https://github.com/DigitalInnovation/bosh-concourse-setup
+
+This project achieves the following in a locally deployed pipeline:
 
 - Preparation of an AWS environment for BOSH & Concourse
 - Deployment of a new BOSH Director using bosh-init
@@ -12,10 +16,8 @@ Terraform is used to setup the base network and security infrastructure, includi
 Requirements
 -----
 
-- Install [terraform](https://www.terraform.io/intro/getting-started/install.html)
-- Install [bosh-init](https://bosh.io/docs/install-bosh-init.html)
-- Install the [bosh_cli](https://bosh.io/docs/bosh-cli.html)
-- Install the [yml2env tool](https://github.com/EngineerBetter/yml2env)
+- Run a [local concourse](https://concourse.ci/vagrant.html)
+- Install the [fly cli](https://concourse.ci/fly-cli.html)
 
 Table of Contents
 -----
@@ -35,9 +37,3 @@ Table of Contents
   * Updating to a new version of Garden
   * Updating the cloud config
   * Modifying the deployment
-
-
-Credits
------
-
-Many thanks to [EngineerBetter](http://www.engineerbetter.com/) for the original [tutorial](https://github.com/EngineerBetter/bosh-concourse-setup) of which this is a fork and for the yml2env tool.
