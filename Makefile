@@ -36,7 +36,7 @@ mrproper: ## Remove all non-version-controlled files
 .terraform/terraform.tfstate:
 	terraform remote config \
 	  -backend=S3 \
-	  -backend-config="bucket=boshconcourse-terraform" \
+	  -backend-config="bucket=concourse-setup-files" \
 	  -backend-config="key=terraform.tfstate" \
 	  -backend-config="region=eu-west-1" \
 	  -backend-config="encrypt=true" \

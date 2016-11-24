@@ -1,9 +1,5 @@
-/*resource "aws_s3_bucket" "www-dachs-dog" {
-    bucket = "www.dachs.dog"
-    acl = "public-read"
+resource "aws_s3_bucket" "setup-files" {
+    bucket = "concourse-setup-files"
+    acl = "private"
     region = "eu-west-1"
-    website {
-        index_document = "index.html"
-        error_document = "error.html"
-    }
-}*/
+}

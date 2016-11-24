@@ -1,0 +1,19 @@
+---
+# bosh manifest vars
+aws_access_key_id: an_aws_key
+aws_secret_access_key: an_aws_secret_key
+aws_region: an_aws_region
+aws_az: an_aws_az
+bosh_password: a_password
+aws_keypair_key_name: a_keypair_name
+private_key_path: path_to_keypair
+# concourse vars
+db_password: another_password
+github_org: org
+github_client_id: github_id
+github_client_secret: github_secret
+# terraform vars
+ssl_cert_arn: foo
+ci_dns_zone_id: bar
+ci_hostname: ci.example.com
+boshers: '[ "192.168.0.1/32", "192.160.0.255/32", "10.0.0.1/32" ]'

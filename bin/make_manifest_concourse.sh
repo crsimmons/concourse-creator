@@ -43,7 +43,7 @@ instance_groups:
     release: concourse
     properties:
       # replace with your CI's externally reachable URL e.g https://blah
-      external_url: $CONCOURSE_URL
+      external_url: $CI_HOSTNAME
       # configure GitHub auth
       github_auth:
         authorize:

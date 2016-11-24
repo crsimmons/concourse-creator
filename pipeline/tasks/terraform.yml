@@ -1,0 +1,21 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: zhadow/cc-docker
+    tag: latest
+
+inputs:
+- name: concourse-creator
+
+run:
+  path: pipeline/tasks/terraform.sh
+  dir: concourse-creator
+
+params:
+  SSL_CERT_ARN:
+  CI_DNS_ZONE_ID:
+  CI_HOSTNAME:
+  BOSHERS:

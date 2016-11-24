@@ -1,0 +1,111 @@
+---
+jobs:
+- name: deploy-concourse
+  plan:
+  - aggregate:
+    - get: concourse-creator
+      trigger: false
+    - get: concourse-release
+      trigger: false
+      params:
+        globs:
+        - concourse-*.tgz
+        - garden-runc-*.tgz
+    - do:
+      - task: terraform
+        file: concourse-creator/ci/tasks/terraform.yml
+        params:
+          SSL_CERT_ARN: {{ssl_cert_arn}}
+          CI_DNS_ZONE_ID: {{ci_dns_zone_id}}
+          CI_HOSTNAME: {{ci_hostname}}
+          BOSHERS: {{boshers}}
+      - task: bosh
+        file: concourse-creator/pipeline/tasks/bosh.yml
+        params:
+          AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
+          AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
+          AWS_REGION: {{aws_region}}
+          AWS_AZ: {{aws_az}}
+          BOSH_PASSWORD: {{bosh_password}}
+          AWS_KEYPAIR_KEY_NAME: {{aws_keypair_key_name}}
+          PRIVATE_KEY_PATH: {{private_key_path}}
+      - task: concourse
+        file: concourse-creator/pipeline/tasks/concourse
+        params:
+          DB_PASSWORD: {{db_password}}
+          GITHUB_ORG: {{github_org}}
+          GITHUB_CLIENT_ID: {{github_client_id}}
+          GITHUB_CLIENT_SECRET: {{github_client_secret}}
+          CI_HOSTNAME: {{ci_hostname}}
+      - put: concourse-deployment
+        params:
+          manifest: concourse-creator/concourse.yml
+          releases:
+            - concourse-release/concourse-*.tgz
+            - concourse-release/garden-runc-*.tgz
+          stemcells:
+            - stemcell/*.tgz
+    - put: tf-state
+      params:
+        file: concourse-creator/terraform/terraform.tfstate
+    - put: cloud-config
+      params:
+        file: concourse-creator/aws-cloud.yml
+    - put: bosh-director-config
+      params:
+        file: concourse-creator/bosh-director.yml
+    - put: concourse-config
+      params:
+        file: concourse-creator/concourse.yml
+
+resources:
+- name: tf-state
+  type: s3
+  source:
+    bucket: concourse-setup-files
+    region_name: eu-west-1
+    regexp: terraform-(.*).tfstate
+    access_key_id: {{aws_access_key_id}}
+    secret_access_key: {{aws_secret_access_key}}
+- name: cloud-config
+  type: s3
+  source:
+    bucket: concourse-setup-files
+    region_name: eu-west-1
+    regexp: aws-cloud-(.*).yml
+    access_key_id: {{aws_access_key_id}}
+    secret_access_key: {{aws_secret_access_key}}
+- name: bosh-director-config
+  type: s3
+  source:
+    bucket: concourse-setup-files
+    region_name: eu-west-1
+    regexp: bosh-director-(.*).yml
+    access_key_id: {{aws_access_key_id}}
+    secret_access_key: {{aws_secret_access_key}}
+- name: concourse-config
+  type: s3
+  source:
+    bucket: concourse-setup-files
+    region_name: eu-west-1
+    regexp: concourse-(.*).yml
+    access_key_id: {{aws_access_key_id}}
+    secret_access_key: {{aws_secret_access_key}}
+- name: concourse-creator
+  type: git
+  source:
+    uri: https://github.com/zhadow/concourse-creator.git
+    branch: master
+- name: concourse-deployment
+  type: bosh-deployment
+  source:
+    target: {{ci_hostname}}
+    username: admin
+    password: {{bosh_password}}
+    deployment: concourse
+    ignore_ssl: true
+- name: concourse-release
+  type: github-release
+  source:
+    repository: concourse
+    user: concourse
