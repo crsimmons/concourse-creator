@@ -10,7 +10,7 @@ export AWS_PROFILE
 
 infra: plan apply ## Do whatever's needed to bring the infra up to date
 
-plan: $(PLAN) ## Plan, display and store that which would be needed to bring the infra up to date
+plan: ## Plan, display and store that which would be needed to bring the infra up to date
 	terraform plan -out $(PLAN) -var-file=$(TF_VARS) $(RESOURCES)/
 
 apply: tf-apply clean ## Apply the current plan of operations to the infra, without replanning
