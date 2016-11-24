@@ -12,6 +12,7 @@ db_password: another_password
 github_org: org
 github_client_id: github_id
 github_client_secret: github_secret
+disk_type: large
 # terraform vars
 ssl_cert_arn: foo
 ci_dns_zone_id: bar

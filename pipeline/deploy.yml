@@ -36,6 +36,7 @@ jobs:
         GITHUB_CLIENT_ID: {{github_client_id}}
         GITHUB_CLIENT_SECRET: {{github_client_secret}}
         CI_HOSTNAME: {{ci_hostname}}
+        DISK_TYPE: {{disk_type}}
     - put: concourse-deployment
       params:
         manifest: concourse-creator/concourse.yml
