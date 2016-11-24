@@ -2,7 +2,7 @@
 jobs:
 - name: deploy-concourse
   plan:
-  - aggregate:
+  - do:
     - get: concourse-creator
       trigger: false
     - get: concourse-release
@@ -11,40 +11,39 @@ jobs:
         globs:
         - concourse-*.tgz
         - garden-runc-*.tgz
-    - do:
-      - task: terraform
-        file: concourse-creator/ci/tasks/terraform.yml
-        params:
-          SSL_CERT_ARN: {{ssl_cert_arn}}
-          CI_DNS_ZONE_ID: {{ci_dns_zone_id}}
-          CI_HOSTNAME: {{ci_hostname}}
-          BOSHERS: {{boshers}}
-      - task: bosh
-        file: concourse-creator/pipeline/tasks/bosh.yml
-        params:
-          AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
-          AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
-          AWS_REGION: {{aws_region}}
-          AWS_AZ: {{aws_az}}
-          BOSH_PASSWORD: {{bosh_password}}
-          AWS_KEYPAIR_KEY_NAME: {{aws_keypair_key_name}}
-          PRIVATE_KEY_PATH: {{private_key_path}}
-      - task: concourse
-        file: concourse-creator/pipeline/tasks/concourse
-        params:
-          DB_PASSWORD: {{db_password}}
-          GITHUB_ORG: {{github_org}}
-          GITHUB_CLIENT_ID: {{github_client_id}}
-          GITHUB_CLIENT_SECRET: {{github_client_secret}}
-          CI_HOSTNAME: {{ci_hostname}}
-      - put: concourse-deployment
-        params:
-          manifest: concourse-creator/concourse.yml
-          releases:
-            - concourse-release/concourse-*.tgz
-            - concourse-release/garden-runc-*.tgz
-          stemcells:
-            - stemcell/*.tgz
+    - task: terraform
+      file: concourse-creator/ci/tasks/terraform.yml
+      params:
+        SSL_CERT_ARN: {{ssl_cert_arn}}
+        CI_DNS_ZONE_ID: {{ci_dns_zone_id}}
+        CI_HOSTNAME: {{ci_hostname}}
+        BOSHERS: {{boshers}}
+    - task: bosh
+      file: concourse-creator/pipeline/tasks/bosh.yml
+      params:
+        AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
+        AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
+        AWS_REGION: {{aws_region}}
+        AWS_AZ: {{aws_az}}
+        BOSH_PASSWORD: {{bosh_password}}
+        AWS_KEYPAIR_KEY_NAME: {{aws_keypair_key_name}}
+        PRIVATE_KEY_PATH: {{private_key_path}}
+    - task: concourse
+      file: concourse-creator/pipeline/tasks/concourse
+      params:
+        DB_PASSWORD: {{db_password}}
+        GITHUB_ORG: {{github_org}}
+        GITHUB_CLIENT_ID: {{github_client_id}}
+        GITHUB_CLIENT_SECRET: {{github_client_secret}}
+        CI_HOSTNAME: {{ci_hostname}}
+    - put: concourse-deployment
+      params:
+        manifest: concourse-creator/concourse.yml
+        releases:
+          - concourse-release/concourse-*.tgz
+          - concourse-release/garden-runc-*.tgz
+        stemcells:
+          - stemcell/*.tgz
     - put: tf-state
       params:
         file: concourse-creator/terraform/terraform.tfstate
