@@ -4,7 +4,7 @@
 make infra
 
 ./bin/make_manifest_bosh-init.sh
-bosh-init deploy bosh-director.yml
+bosh-init deploy bosh-director.yml || make destroy
 bosh target $(terraform output eip)
 ./bin/make_cloud_config.sh
 bosh update cloud-config aws-cloud.yml
