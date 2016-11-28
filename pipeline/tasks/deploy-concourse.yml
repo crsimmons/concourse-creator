@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
 - name: concourse-creator
+- name: private_key
 
 run:
   path: pipeline/tasks/deploy-concourse.sh

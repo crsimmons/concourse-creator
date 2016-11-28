@@ -5,6 +5,8 @@ jobs:
   - aggregate:
     - get: concourse-creator
       trigger: false
+    - get: private_key
+      trigger: false
     - get: concourse-release
       trigger: false
       params:
@@ -12,8 +14,6 @@ jobs:
         - concourse-*.tgz
         - garden-runc-*.tgz
     - get: stemcell
-      trigger: false
-    - get: private_key
       trigger: false
   - task: deploy-concourse
     file: concourse-creator/pipeline/tasks/deploy-concourse.yml
