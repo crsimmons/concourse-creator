@@ -7,7 +7,6 @@
 #  $AWS_AZ
 #  $BOSH_PASSWORD
 #  $AWS_KEYPAIR_KEY_NAME
-#  $PRIVATE_KEY_PATH
 
 function getvars() {
   EIP=$(terraform output eip)
