@@ -13,6 +13,8 @@ jobs:
         - garden-runc-*.tgz
     - get: stemcell
       trigger: false
+    - get: private_key
+      trigger: false
   - task: deploy-concourse
     file: concourse-creator/pipeline/tasks/deploy-concourse.yml
     params:
@@ -56,6 +58,14 @@ jobs:
         file: concourse-creator/concourse.yml
 
 resources:
+- name: private_key
+  type: s3
+  source:
+    bucket: {{private_key_bucket}}
+    region_name: eu-west-1
+    regexp: {{aws_keypair_key_name}}-(.*).pem
+    access_key_id: {{aws_access_key_id}}
+    secret_access_key: {{aws_secret_access_key}}
 - name: tf-state
   type: s3
   source:

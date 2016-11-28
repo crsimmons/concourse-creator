@@ -150,7 +150,7 @@ cloud_provider:
     host: $EIP # <--- Replace with your Elastic IP address
     port: 22
     user: vcap
-    private_key: $PRIVATE_KEY_PATH # Path relative to this manifest file
+    private_key: ../private_key/${AWS_KEYPAIR_NAME}.pem # Path relative to this manifest file
 
   mbus: "https://mbus:$BOSH_PASSWORD@$EIP:6868" # <--- Replace with Elastic IP
 
