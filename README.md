@@ -1,3 +1,9 @@
+# NO LONGER BEING DEVELOPPED
+# Check out [Concourse-Up](https://github.com/EngineerBetter/concourse-up) instead
+
+
+
+
 Concourse Pipelines for deploying a BOSH Director & Concourse on AWS
 ===================================
 
